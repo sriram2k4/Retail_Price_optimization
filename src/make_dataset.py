@@ -1,4 +1,5 @@
 import warnings
+import numpy as np
 import pandas as pd
 from pathlib import Path
 from config.config import DATA_DIR
@@ -28,7 +29,7 @@ class LabelEncoder:
     def transform(self):
         for col in self.cats_col:
             self.df[col] = self.df[col].map(self.cats_dict[col])
-        print(self.df)
+        return self.df
         
     def fit_transform(self):
         return self.fit().transform()
@@ -42,5 +43,6 @@ class ProcessData:
         self.df = df
 
     def remove_null_values(self):
-        return self.df.dropna()
-
+        df = self.df.copy()
+        df = df.dropna()
+        return df
