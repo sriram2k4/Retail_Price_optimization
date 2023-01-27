@@ -6,6 +6,6 @@ class ModelBuilder:
         self.y = y
     
     def build_model(self):
-        x = sm.add_constant(self.x)
+        self.x = sm.add_constant(self.x)
         model = sm.OLS(self.y, self.x).fit()
         return model
